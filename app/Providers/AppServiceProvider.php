@@ -3,10 +3,14 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+<<<<<<< HEAD
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+=======
+
+>>>>>>> origin/nguyen-tuan-vu
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+<<<<<<< HEAD
 
         
     public function boot(): void
@@ -31,4 +36,10 @@ class AppServiceProvider extends ServiceProvider
         
     }   
     
+=======
+    public function boot()
+    {
+        //
+    }
+>>>>>>> origin/nguyen-tuan-vu
 }

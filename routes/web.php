@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Route;
+=======
+//use Illuminate\Support\Facades\Route;
+>>>>>>> origin/nguyen-tuan-vu
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +17,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+<<<<<<< HEAD
+=======
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+use Illuminate\Support\Facades\Route;
+use App\Models\Product;
+use Illuminate\Support\Facades\Http;
+
+>>>>>>> origin/nguyen-tuan-vu
 Route::get('/', function () {
     return view('welcome');
 });
 
 
+<<<<<<< HEAD
 use App\Http\Controllers\Auth\AuthController;
 
 Route::prefix('api')->group(function () {
@@ -69,3 +85,19 @@ Route::post('/logout', function (Request $request) {
     $request->session()->regenerateToken();
     return response()->noContent();
 });
+=======
+Route::get('/san-pham', function () {
+    $products = Product::with(['shop', 'productImages'])
+        ->where('status', 'active')
+        ->take(12)
+        ->get();
+    return view('products', compact('products'));
+});
+
+
+
+Route::get('/momo/callback', function () {
+    // MOMO sẽ gọi về đây sau khi thanh toán
+    return "Thanh toán thành công! Cảm ơn bạn.";
+})->name('momo.callback');
+>>>>>>> origin/nguyen-tuan-vu

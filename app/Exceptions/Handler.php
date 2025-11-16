@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+<<<<<<< HEAD
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -9,11 +10,15 @@ use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+=======
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+>>>>>>> origin/nguyen-tuan-vu
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
     /**
+<<<<<<< HEAD
      * Exception levels to report.
      */
     protected $levels = [
@@ -22,13 +27,33 @@ class Handler extends ExceptionHandler
 
     /**
      * Exceptions không report.
+=======
+     * A list of exception types with their corresponding custom log levels.
+     *
+     * @var array<class-string<\Throwable>, \Psr\Log\LogLevel::*>
+     */
+    protected $levels = [
+        //
+    ];
+
+    /**
+     * A list of the exception types that are not reported.
+     *
+     * @var array<int, class-string<\Throwable>>
+>>>>>>> origin/nguyen-tuan-vu
      */
     protected $dontReport = [
         //
     ];
 
     /**
+<<<<<<< HEAD
      * Inputs không đưa vào session khi có lỗi.
+=======
+     * A list of the inputs that are never flashed to the session on validation exceptions.
+     *
+     * @var array<int, string>
+>>>>>>> origin/nguyen-tuan-vu
      */
     protected $dontFlash = [
         'current_password',
@@ -36,6 +61,7 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
+<<<<<<< HEAD
     public function register(): void
     {
         //
@@ -93,5 +119,17 @@ class Handler extends ExceptionHandler
 
         // Fallback production
         return $map(500, 'INTERNAL_ERROR', 'Có lỗi xảy ra, vui lòng thử lại sau');
+=======
+    /**
+     * Register the exception handling callbacks for the application.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->reportable(function (Throwable $e) {
+            //
+        });
+>>>>>>> origin/nguyen-tuan-vu
     }
 }

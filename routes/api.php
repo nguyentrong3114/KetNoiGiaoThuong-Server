@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 
 use App\Http\Controllers\UserController;
 use App\Models\User;
@@ -19,6 +20,11 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\DataExportController;
 
 
+=======
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\PaymentController;
+>>>>>>> origin/nguyen-tuan-vu
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +43,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
+<<<<<<< HEAD
 Route::middleware(['force.json', 'throttle:60,1'])->group(function () {
     Route::get('/users', [UserController::class, 'index']);
 });
@@ -194,3 +201,30 @@ Route::prefix('moderation')->middleware('auth:api')->group(function () {
     });
 });
 
+=======
+Route::prefix('orders')->group(function () {
+    Route::get('/', [OrderController::class, 'index']);      // Lấy tất cả
+    Route::get('/{id}', [OrderController::class, 'show']);   // Lấy theo ID
+    Route::post('/', [OrderController::class, 'store']);          // POST create
+    Route::put('/{id}', [OrderController::class, 'update']);      // PUT update
+    Route::delete('/{id}', [OrderController::class, 'destroy']);  // DELETE cancel
+});
+
+
+
+Route::prefix('reviews')->group(function () {
+    Route::get('/', [ReviewController::class, 'index']);           // GET all
+    Route::get('/{id}', [ReviewController::class, 'show']);        // GET by id
+    Route::post('/', [ReviewController::class, 'store']);          // POST create
+    Route::put('/{id}', [ReviewController::class, 'update']);      // PUT update
+    Route::delete('/{id}', [ReviewController::class, 'destroy']);  // DELETE
+});
+
+
+
+Route::prefix('payments')->group(function () {
+    Route::get('/', [PaymentController::class, 'index']);
+    Route::get('/{id}', [PaymentController::class, 'show']);
+    Route::post('/', [PaymentController::class, 'store']);
+});
+>>>>>>> origin/nguyen-tuan-vu

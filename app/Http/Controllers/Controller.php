@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
+<<<<<<< HEAD
 /**
  * @OA\Info(
  *     version="1.0.0",
@@ -29,6 +30,8 @@ use Illuminate\Routing\Controller as BaseController;
  *     bearerFormat="JWT"
  * )
  */
+=======
+>>>>>>> origin/nguyen-tuan-vu
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

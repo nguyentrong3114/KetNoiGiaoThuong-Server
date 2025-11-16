@@ -40,11 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+<<<<<<< HEAD
 
         'api' => [
             'driver' => 'jwt',   // 👈 thay vì 'token'
             'provider' => 'users',
         ],
+=======
+>>>>>>> origin/nguyen-tuan-vu
     ],
 
     /*
