@@ -4,6 +4,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IdentityController;
+use App\Http\Controllers\ModerationController;
+use App\Http\Controllers\LoginHistoryController;
+use App\Http\Controllers\AdminIdentityController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PlanController;
+use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\DataExportController;
 
 
 /*
@@ -22,6 +29,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+// Public subscription plans
+Route::get('plans', [PlanController::class, 'index']);
+Route::get('plans/{id}', [PlanController::class, 'show'])->whereNumber('id');
+
 Route::prefix('auth')->group(function () {
     // Rate limit: 5 attempts per minute for sensitive endpoints
     Route::middleware('throttle:5,1')->group(function () {
@@ -38,6 +49,43 @@ Route::prefix('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:api');
 });
 
+// Login history - user
+Route::middleware('auth:api')->get('login-history', [LoginHistoryController::class, 'myHistory']);
+
+// Login history - admin
+Route::prefix('admin')->middleware(['auth:api', 'admin'])->group(function () {
+    Route::get('login-history', [LoginHistoryController::class, 'adminIndex']);
+    Route::get('users/{userId}/login-history', [LoginHistoryController::class, 'adminUserHistory']);
+});
+
+// Notifications (require auth)
+Route::prefix('notifications')->middleware('auth:api')->group(function () {
+    Route::get('/', [NotificationController::class, 'index']);
+    Route::get('{id}', [NotificationController::class, 'show'])->whereNumber('id');
+    Route::put('{id}/read', [NotificationController::class, 'markAsRead'])->whereNumber('id');
+    Route::put('read-all', [NotificationController::class, 'markAllAsRead']);
+    Route::delete('delete-all', [NotificationController::class, 'destroyAll']);
+    Route::delete('{id}', [NotificationController::class, 'destroy'])->whereNumber('id');
+});
+
+// Subscriptions (require auth)
+Route::prefix('subscriptions')->middleware('auth:api')->group(function () {
+    Route::post('/', [SubscriptionController::class, 'subscribe']);
+    Route::put('{id}/renew', [SubscriptionController::class, 'renew'])->whereNumber('id');
+    Route::get('current', [SubscriptionController::class, 'current']);
+    Route::get('history', [SubscriptionController::class, 'history']);
+    Route::delete('{id}/cancel', [SubscriptionController::class, 'cancel'])->whereNumber('id');
+});
+
+// Data export (require auth)
+Route::prefix('data/export')->middleware('auth:api')->group(function () {
+    Route::post('request', [DataExportController::class, 'requestExport']);
+    Route::get('status/{id}', [DataExportController::class, 'status'])->whereNumber('id');
+    Route::get('download/{id}', [DataExportController::class, 'download'])->whereNumber('id');
+    Route::delete('cancel/{id}', [DataExportController::class, 'cancel'])->whereNumber('id');
+    Route::get('history', [DataExportController::class, 'history']);
+});
+
 // Identity Routes (require auth)
 Route::prefix('identity')->middleware('auth:api')->group(function () {
     // User endpoints
@@ -48,7 +96,24 @@ Route::prefix('identity')->middleware('auth:api')->group(function () {
 
     // Admin endpoints (require admin role)
     Route::middleware('admin')->group(function () {
+        Route::get('verify-requests', [AdminIdentityController::class, 'getVerifyRequests']);
+        Route::get('verify-requests/{id}', [AdminIdentityController::class, 'getVerifyRequest']);
         Route::put('verify-request/{id}/approve', [IdentityController::class, 'approveVerifyRequest']);
         Route::put('verify-request/{id}/reject', [IdentityController::class, 'rejectVerifyRequest']);
+    });
+});
+
+// Moderation Routes (require auth)
+Route::prefix('moderation')->middleware('auth:api')->group(function () {
+    // User endpoints
+    Route::post('report', [ModerationController::class, 'report']);
+    Route::get('my-reports', [ModerationController::class, 'myReports']);
+
+    // Admin endpoints (require admin role)
+    Route::middleware('admin')->group(function () {
+        Route::get('reports', [ModerationController::class, 'getReports']);
+        Route::get('reports/{id}', [ModerationController::class, 'getReport']);
+        Route::put('reports/{id}/resolve', [ModerationController::class, 'resolveReport']);
+        Route::delete('reports/{id}', [ModerationController::class, 'deleteReport']);
     });
 });
