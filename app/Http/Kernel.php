@@ -63,6 +63,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+
         'basic.env' => \App\Http\Middleware\BasicEnvAuth::class,
         // của bạn
         'admin' => \App\Http\Middleware\AdminOnly::class,
@@ -72,5 +73,8 @@ class Kernel extends HttpKernel
     ];
     protected $middlewareAliases = [
         
+
+        'admin' => \App\Http\Middleware\CheckAdmin::class,
+
     ];
 }
