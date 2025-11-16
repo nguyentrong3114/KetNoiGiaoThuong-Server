@@ -41,6 +41,7 @@ return [
             'provider' => 'users',
         ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         'api' => [
             'driver' => 'jwt',   // 👈 thay vì 'token'
@@ -48,6 +49,8 @@ return [
         ],
 =======
 >>>>>>> origin/nguyen-tuan-vu
+=======
+>>>>>>> origin/nguyen-van-thanh
     ],
 
     /*

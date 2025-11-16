@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 use App\Events\OrderCreated;
 use App\Events\PaymentSucceeded;
 use App\Events\ShipmentCreated;
@@ -35,6 +36,8 @@ class EventServiceProvider extends ServiceProvider
 
     public function boot(): void {}
 =======
+=======
+>>>>>>> origin/nguyen-van-thanh
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -72,5 +75,8 @@ class EventServiceProvider extends ServiceProvider
     {
         return false;
     }
+<<<<<<< HEAD
 >>>>>>> origin/nguyen-tuan-vu
+=======
+>>>>>>> origin/nguyen-van-thanh
 }

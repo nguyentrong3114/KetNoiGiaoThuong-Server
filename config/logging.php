@@ -86,10 +86,14 @@ return [
                 'host' => env('PAPERTRAIL_URL'),
                 'port' => env('PAPERTRAIL_PORT'),
 <<<<<<< HEAD
+<<<<<<< HEAD
                 'connectionString' => 'tls://' . env('PAPERTRAIL_URL') . ':' . env('PAPERTRAIL_PORT'),
 =======
                 'connectionString' => 'tls://'.env('PAPERTRAIL_URL').':'.env('PAPERTRAIL_PORT'),
 >>>>>>> origin/nguyen-tuan-vu
+=======
+                'connectionString' => 'tls://'.env('PAPERTRAIL_URL').':'.env('PAPERTRAIL_PORT'),
+>>>>>>> origin/nguyen-van-thanh
             ],
         ],
 
@@ -122,6 +126,7 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 <<<<<<< HEAD
+<<<<<<< HEAD
         'request' => [
             'driver' => 'daily',
             'path'   => storage_path('logs/request.log'),
@@ -131,6 +136,8 @@ return [
 
 =======
 >>>>>>> origin/nguyen-tuan-vu
+=======
+>>>>>>> origin/nguyen-van-thanh
     ],
 
 ];

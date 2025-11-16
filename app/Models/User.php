@@ -3,6 +3,7 @@
 namespace App\Models;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -70,6 +71,8 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Notification::class);
     }
 =======
+=======
+>>>>>>> origin/nguyen-van-thanh
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -109,5 +112,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+<<<<<<< HEAD
 >>>>>>> origin/nguyen-tuan-vu
+=======
+>>>>>>> origin/nguyen-van-thanh
 }

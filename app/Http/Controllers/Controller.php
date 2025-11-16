@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * @OA\Info(
  *     version="1.0.0",
@@ -32,6 +33,8 @@ use Illuminate\Routing\Controller as BaseController;
  */
 =======
 >>>>>>> origin/nguyen-tuan-vu
+=======
+>>>>>>> origin/nguyen-van-thanh
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

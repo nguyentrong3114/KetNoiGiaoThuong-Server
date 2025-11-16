@@ -8,11 +8,14 @@ class Kernel extends HttpKernel
 {
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Global middleware áp dụng cho mọi request.
      */
     protected $middleware = [
         \App\Http\Middleware\TrustHosts::class,
 =======
+=======
+>>>>>>> origin/nguyen-van-thanh
      * The application's global HTTP middleware stack.
      *
      * These middleware are run during every request to your application.
@@ -21,13 +24,17 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
+<<<<<<< HEAD
 >>>>>>> origin/nguyen-tuan-vu
+=======
+>>>>>>> origin/nguyen-van-thanh
         \App\Http\Middleware\TrustProxies::class,
         \Illuminate\Http\Middleware\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+<<<<<<< HEAD
 <<<<<<< HEAD
 
         // Cross-cutting của bạn
@@ -39,13 +46,18 @@ class Kernel extends HttpKernel
     /**
      * Middleware groups.
 =======
+=======
+>>>>>>> origin/nguyen-van-thanh
     ];
 
     /**
      * The application's route middleware groups.
      *
      * @var array<string, array<int, class-string|string>>
+<<<<<<< HEAD
 >>>>>>> origin/nguyen-tuan-vu
+=======
+>>>>>>> origin/nguyen-van-thanh
      */
     protected $middlewareGroups = [
         'web' => [
@@ -55,6 +67,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+<<<<<<< HEAD
 <<<<<<< HEAD
             'request.corr',
         ],
@@ -69,38 +82,54 @@ class Kernel extends HttpKernel
 	        \App\Http\Middleware\RequestTimer::class,
             'request.corr',
 =======
+=======
+>>>>>>> origin/nguyen-van-thanh
         ],
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+<<<<<<< HEAD
 >>>>>>> origin/nguyen-tuan-vu
+=======
+>>>>>>> origin/nguyen-van-thanh
         ],
     ];
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Route middleware có thể gắn ở route/group.
 =======
+=======
+>>>>>>> origin/nguyen-van-thanh
      * The application's route middleware.
      *
      * These middleware may be assigned to groups or used individually.
      *
      * @var array<string, class-string|string>
+<<<<<<< HEAD
 >>>>>>> origin/nguyen-tuan-vu
+=======
+>>>>>>> origin/nguyen-van-thanh
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
 >>>>>>> origin/nguyen-tuan-vu
+=======
+        'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
+>>>>>>> origin/nguyen-van-thanh
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
+<<<<<<< HEAD
 <<<<<<< HEAD
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
@@ -123,5 +152,10 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 >>>>>>> origin/nguyen-tuan-vu
+=======
+        'signed' => \App\Http\Middleware\ValidateSignature::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+>>>>>>> origin/nguyen-van-thanh
     ];
 }

@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -13,11 +14,15 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 =======
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 >>>>>>> origin/nguyen-tuan-vu
+=======
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+>>>>>>> origin/nguyen-van-thanh
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
     /**
+<<<<<<< HEAD
 <<<<<<< HEAD
      * Exception levels to report.
      */
@@ -28,6 +33,8 @@ class Handler extends ExceptionHandler
     /**
      * Exceptions không report.
 =======
+=======
+>>>>>>> origin/nguyen-van-thanh
      * A list of exception types with their corresponding custom log levels.
      *
      * @var array<class-string<\Throwable>, \Psr\Log\LogLevel::*>
@@ -40,7 +47,10 @@ class Handler extends ExceptionHandler
      * A list of the exception types that are not reported.
      *
      * @var array<int, class-string<\Throwable>>
+<<<<<<< HEAD
 >>>>>>> origin/nguyen-tuan-vu
+=======
+>>>>>>> origin/nguyen-van-thanh
      */
     protected $dontReport = [
         //
@@ -48,12 +58,18 @@ class Handler extends ExceptionHandler
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Inputs không đưa vào session khi có lỗi.
 =======
      * A list of the inputs that are never flashed to the session on validation exceptions.
      *
      * @var array<int, string>
 >>>>>>> origin/nguyen-tuan-vu
+=======
+     * A list of the inputs that are never flashed to the session on validation exceptions.
+     *
+     * @var array<int, string>
+>>>>>>> origin/nguyen-van-thanh
      */
     protected $dontFlash = [
         'current_password',
@@ -61,6 +77,7 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     public function register(): void
     {
@@ -120,6 +137,8 @@ class Handler extends ExceptionHandler
         // Fallback production
         return $map(500, 'INTERNAL_ERROR', 'Có lỗi xảy ra, vui lòng thử lại sau');
 =======
+=======
+>>>>>>> origin/nguyen-van-thanh
     /**
      * Register the exception handling callbacks for the application.
      *
@@ -130,6 +149,9 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+<<<<<<< HEAD
 >>>>>>> origin/nguyen-tuan-vu
+=======
+>>>>>>> origin/nguyen-van-thanh
     }
 }

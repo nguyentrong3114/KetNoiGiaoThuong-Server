@@ -182,9 +182,12 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 <<<<<<< HEAD
+<<<<<<< HEAD
         App\Providers\LoggingServiceProvider::class,
 =======
 >>>>>>> origin/nguyen-tuan-vu
+=======
+>>>>>>> origin/nguyen-van-thanh
 
         /*
          * Package Service Providers...
@@ -199,10 +202,13 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 <<<<<<< HEAD
+<<<<<<< HEAD
         App\Providers\LoggingServiceProvider::class,
         
 =======
 >>>>>>> origin/nguyen-tuan-vu
+=======
+>>>>>>> origin/nguyen-van-thanh
 
     ],
 

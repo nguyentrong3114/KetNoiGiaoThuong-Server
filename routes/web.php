@@ -1,10 +1,14 @@
 <?php
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Route;
 =======
 //use Illuminate\Support\Facades\Route;
 >>>>>>> origin/nguyen-tuan-vu
+=======
+use Illuminate\Support\Facades\Route;
+>>>>>>> origin/nguyen-van-thanh
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 // Route::get('/', function () {
@@ -101,3 +106,8 @@ Route::get('/momo/callback', function () {
     return "Thanh toán thành công! Cảm ơn bạn.";
 })->name('momo.callback');
 >>>>>>> origin/nguyen-tuan-vu
+=======
+Route::get('/', function () {
+    return view('welcome');
+});
+>>>>>>> origin/nguyen-van-thanh
