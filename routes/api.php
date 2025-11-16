@@ -2,6 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\UserController;
+use App\Models\User;
+use App\Events\UserRegistered;
+use App\Http\Controllers\Reports\ReportsController;
+use App\Http\Controllers\Tracking\TrackController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IdentityController;
 use App\Http\Controllers\ModerationController;
@@ -11,6 +17,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\DataExportController;
+
 
 
 /*
@@ -29,6 +36,75 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+
+Route::middleware(['force.json', 'throttle:60,1'])->group(function () {
+    Route::get('/users', [UserController::class, 'index']);
+});
+
+
+Route::get('/_demo/validation', function (Request $r) {
+    $r->validate(['email' => 'required|email']);
+});
+
+Route::get('/_demo/not-found', function () {
+    abort(404);
+});
+
+Route::get('/demo/events/welcome/{id}', function ($id) {
+    $user = User::findOrFail($id);    // lấy user có sẵn trong DB
+    event(new UserRegistered($user)); // bắn sự kiện -> listener -> notif + job
+    return response()->json(['ok' => true]);
+});
+
+// --- Admin APIs ---
+use Illuminate\Support\Facades\Route as RouteFacade;
+Route::middleware(['auth:sanctum', 'admin', 'force.json', 'throttle:60,1'])
+    ->prefix('admin')
+    ->group(function () {
+        // User management
+        RouteFacade::get('/users', [\App\Http\Controllers\Admin\UserAdminController::class, 'index']);
+        RouteFacade::patch('/users/{id}/role', [\App\Http\Controllers\Admin\UserAdminController::class, 'updateRole']);
+        RouteFacade::patch('/users/{id}/status', [\App\Http\Controllers\Admin\UserAdminController::class, 'updateStatus']);
+
+        // Content moderation: trade posts
+        RouteFacade::get('/content/trade-posts', [\App\Http\Controllers\Admin\ContentAdminController::class, 'listTradePosts']);
+        RouteFacade::patch('/content/trade-posts/{id}/approve', [\App\Http\Controllers\Admin\ContentAdminController::class, 'approveTradePost']);
+        RouteFacade::patch('/content/trade-posts/{id}/reject', [\App\Http\Controllers\Admin\ContentAdminController::class, 'rejectTradePost']);
+
+        // Content moderation: products
+        RouteFacade::get('/content/products', [\App\Http\Controllers\Admin\ContentAdminController::class, 'listProducts']);
+        RouteFacade::patch('/content/products/{id}/status', [\App\Http\Controllers\Admin\ContentAdminController::class, 'updateProductStatus']);
+
+        // Complaints
+        RouteFacade::get('/complaints', [\App\Http\Controllers\Admin\ComplaintAdminController::class, 'index']);
+        RouteFacade::get('/complaints/{id}', [\App\Http\Controllers\Admin\ComplaintAdminController::class, 'show']);
+        RouteFacade::patch('/complaints/{id}/resolve', [\App\Http\Controllers\Admin\ComplaintAdminController::class, 'resolve']);
+        RouteFacade::patch('/complaints/{id}/reject', [\App\Http\Controllers\Admin\ComplaintAdminController::class, 'reject']);
+    });
+Route::get('/ping', function () {
+    return response()->json([
+        'ok' => true,
+        'time' => now()->toDateTimeString(),
+    ]);
+});
+
+use App\Http\Controllers\IdentityController;
+Route::post('/track/pageview', [TrackController::class,'pageview'])->middleware('throttle:60,1');
+Route::post('/track/ad',       [TrackController::class,'ad'])->middleware('throttle:60,1');
+
+Route::middleware(['auth:sanctum'])->get('/identity/profile', [IdentityController::class, 'profile']);
+Route::middleware('auth:sanctum')->get('/me', function (Request $request) {
+    return $request->user();
+});
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/reports/overview',  [ReportsController::class, 'overview']);
+    Route::get('/reports/top-pages', [ReportsController::class, 'topPages']);
+    Route::get('/reports/funnel',    [ReportsController::class, 'funnel']);
+});
+
+Route::fallback(fn () => response()->json(['message' => 'Not Found'], 404));
+
+=======
 // Public subscription plans
 Route::get('plans', [PlanController::class, 'index']);
 Route::get('plans/{id}', [PlanController::class, 'show'])->whereNumber('id');
@@ -117,3 +193,4 @@ Route::prefix('moderation')->middleware('auth:api')->group(function () {
         Route::delete('reports/{id}', [ModerationController::class, 'deleteReport']);
     });
 });
+
